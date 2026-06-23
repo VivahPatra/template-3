@@ -131,7 +131,7 @@ export default function EventsSection() {
   const row2 = events.slice(half)
 
   return (
-    <section id="events" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6">
+    <section id="events" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-5xl mx-auto">
         {/* Heading */}

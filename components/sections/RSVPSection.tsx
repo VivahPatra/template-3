@@ -9,7 +9,7 @@ export default function RSVPSection() {
   const wa = `https://wa.me/${weddingData.rsvp.whatsappNumber}?text=${encodeURIComponent(weddingData.rsvp.message)}`
 
   return (
-    <section id="rsvp" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6">
+    <section id="rsvp" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-2xl mx-auto text-center">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>

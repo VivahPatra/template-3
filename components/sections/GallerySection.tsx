@@ -7,7 +7,7 @@ import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function GallerySection() {
   return (
-    <section id="gallery" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6">
+    <section id="gallery" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-6xl mx-auto">
         <motion.div

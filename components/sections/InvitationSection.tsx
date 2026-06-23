@@ -20,7 +20,7 @@ function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: bo
 
 export default function InvitationSection() {
   return (
-    <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6">
+    <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-2xl mx-auto">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>

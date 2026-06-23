@@ -17,7 +17,7 @@ export default function CountdownSection() {
   const units = [{ label: 'Days', value: t.days }, { label: 'Hours', value: t.hours }, { label: 'Minutes', value: t.minutes }, { label: 'Seconds', value: t.seconds }]
 
   return (
-    <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6 text-center">
+    <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6 text-center relative">
       <FlowerOverlay />
       <div className="max-w-4xl mx-auto">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>

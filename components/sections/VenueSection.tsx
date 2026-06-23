@@ -7,7 +7,7 @@ import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function VenueSection() {
   return (
-    <section id="venue" style={{ background: 'var(--color-surface)' }} className="py-28 px-6">
+    <section id="venue" style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-4xl mx-auto">
         <motion.div className="text-center mb-14" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>

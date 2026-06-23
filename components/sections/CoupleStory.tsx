@@ -28,7 +28,7 @@ function StoryCard({ m }: { m: (typeof weddingData.coupleStory)[0] }) {
 
 export default function CoupleStory() {
   return (
-    <section id="story" style={{ background: 'var(--color-surface)' }} className="py-28 px-6">
+    <section id="story" style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
       <div className="max-w-5xl mx-auto">
         <motion.div className="text-center mb-14" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
