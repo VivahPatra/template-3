@@ -2,15 +2,16 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, staggerContainer } from '@/lib/animations'
+import type { WeddingEvent } from '@/types/wedding.types'
 
 function EventNode({
   event,
   isHero = false,
   delay = 0,
 }: {
-  event: (typeof weddingData.events)[0]
+  event: WeddingEvent
   isHero?: boolean
   delay?: number
 }) {
@@ -125,6 +126,7 @@ function EventNode({
 }
 
 export default function EventsSection() {
+  const weddingData = useWeddingData()
   const events = weddingData.events
   const half = Math.ceil(events.length / 2)
   const row1 = events.slice(0, half)

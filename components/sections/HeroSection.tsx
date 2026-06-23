@@ -1,11 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 import AutoCaricature from '@/components/ui/AutoCaricature'
 import { fadeUp, slideLeft, slideRight, staggerContainer } from '@/lib/animations'
 
 export default function HeroSection() {
+  const weddingData = useWeddingData()
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: 'var(--color-bg)' }}>
       <FlowerOverlay />

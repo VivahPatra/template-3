@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: boolean }) {
@@ -19,6 +19,7 @@ function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: bo
 }
 
 export default function InvitationSection() {
+  const weddingData = useWeddingData()
   return (
     <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />

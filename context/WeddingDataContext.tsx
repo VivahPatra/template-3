@@ -1,0 +1,131 @@
+'use client'
+
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { weddingData as defaultData } from '@/data/wedding-data'
+import type { WeddingConfig, WeddingEvent, GalleryImage, StoryMilestone, FamilyMember } from '@/types/wedding.types'
+
+const WeddingDataContext = createContext<WeddingConfig>(defaultData)
+
+export function useWeddingData() {
+  return useContext(WeddingDataContext)
+}
+
+/** Map incoming editor payload to this template's WeddingConfig shape. */
+function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
+  const d = { ...defaultData }
+
+  // Simple string fields
+  if (typeof editor.groomName === 'string') d.groomName = editor.groomName
+  if (typeof editor.brideName === 'string') d.brideName = editor.brideName
+  if (typeof editor.groomParents === 'string') d.groomParents = editor.groomParents
+  if (typeof editor.brideParents === 'string') d.brideParents = editor.brideParents
+  if (typeof editor.hashtag === 'string') d.hashtag = editor.hashtag
+  if (typeof editor.tagline === 'string') d.tagline = editor.tagline
+  if (typeof editor.invitationText === 'string') d.invitationText = editor.invitationText
+  if (typeof editor.heroImage === 'string') d.heroImage = editor.heroImage
+
+  // Wedding date (string -> Date)
+  if (typeof editor.weddingDate === 'string') {
+    const parsed = new Date(editor.weddingDate)
+    if (!isNaN(parsed.getTime())) d.weddingDate = parsed
+  }
+
+  // Events
+  if (Array.isArray(editor.events)) {
+    d.events = (editor.events as Record<string, unknown>[]).map((ev): WeddingEvent => ({
+      id: String(ev.id ?? ''),
+      name: String(ev.name ?? ''),
+      emoji: String(ev.emoji ?? ''),
+      date: String(ev.date ?? ''),
+      time: String(ev.time ?? ''),
+      venue: String(ev.venue ?? ''),
+      venueAddress: String(ev.venueAddress ?? ''),
+      color: String(ev.color ?? 'var(--color-accent)'),
+      ...(ev.description ? { description: String(ev.description) } : {}),
+      ...(ev.image ? { image: String(ev.image) } : {}),
+    }))
+  }
+
+  // Gallery images
+  if (Array.isArray(editor.galleryImages)) {
+    d.galleryImages = (editor.galleryImages as Record<string, unknown>[]).map((img): GalleryImage => ({
+      src: String(img.src ?? ''),
+      alt: String(img.alt ?? ''),
+      ...(img.span ? { span: String(img.span) as GalleryImage['span'] } : {}),
+    }))
+  }
+
+  // Couple story
+  if (Array.isArray(editor.coupleStory)) {
+    d.coupleStory = (editor.coupleStory as Record<string, unknown>[]).map((s): StoryMilestone => ({
+      date: String(s.date ?? ''),
+      title: String(s.title ?? ''),
+      description: String(s.description ?? ''),
+      icon: String(s.icon ?? ''),
+      ...(s.image ? { image: String(s.image) } : {}),
+    }))
+  }
+
+  // Family members
+  if (Array.isArray(editor.familyBride)) {
+    d.familyBride = (editor.familyBride as Record<string, unknown>[]).map((m): FamilyMember => ({
+      name: String(m.name ?? ''),
+      relation: String(m.relation ?? ''),
+      photo: String(m.photo ?? ''),
+      side: 'bride',
+    }))
+  }
+  if (Array.isArray(editor.familyGroom)) {
+    d.familyGroom = (editor.familyGroom as Record<string, unknown>[]).map((m): FamilyMember => ({
+      name: String(m.name ?? ''),
+      relation: String(m.relation ?? ''),
+      photo: String(m.photo ?? ''),
+      side: 'groom',
+    }))
+  }
+
+  // Venue
+  if (typeof editor.venueName === 'string' || typeof editor.venueAddress === 'string' || typeof editor.venueMapUrl === 'string') {
+    d.venue = {
+      name: typeof editor.venueName === 'string' ? editor.venueName : d.venue.name,
+      address: typeof editor.venueAddress === 'string' ? editor.venueAddress : d.venue.address,
+      mapUrl: typeof editor.venueMapUrl === 'string' ? editor.venueMapUrl : d.venue.mapUrl,
+    }
+  }
+
+  // RSVP
+  if (typeof editor.rsvpPhone === 'string' || typeof editor.rsvpMessage === 'string' || typeof editor.rsvpDeadline === 'string') {
+    d.rsvp = {
+      whatsappNumber: typeof editor.rsvpPhone === 'string' ? editor.rsvpPhone : d.rsvp.whatsappNumber,
+      message: typeof editor.rsvpMessage === 'string' ? editor.rsvpMessage : d.rsvp.message,
+      deadline: typeof editor.rsvpDeadline === 'string' ? editor.rsvpDeadline : d.rsvp.deadline,
+    }
+  }
+
+  // Social links
+  if (typeof editor.instagram === 'string') {
+    d.socialLinks = { instagram: editor.instagram }
+  }
+
+  return d
+}
+
+export function WeddingDataProvider({ children }: { children: ReactNode }) {
+  const [data, setData] = useState<WeddingConfig>(defaultData)
+
+  useEffect(() => {
+    function handleMessage(event: MessageEvent) {
+      if (event.data?.type === 'VIVAHPATRA_UPDATE') {
+        setData(mapEditorData(event.data.payload ?? event.data))
+      }
+    }
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [])
+
+  return (
+    <WeddingDataContext.Provider value={data}>
+      {children}
+    </WeddingDataContext.Provider>
+  )
+}

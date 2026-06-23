@@ -1,8 +1,9 @@
 'use client'
 import { motion } from 'framer-motion'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
+  const weddingData = useWeddingData()
   return (
     <motion.div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"

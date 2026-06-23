@@ -2,10 +2,11 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, slideLeft, slideRight, staggerContainer } from '@/lib/animations'
+import type { StoryMilestone } from '@/types/wedding.types'
 
-function StoryCard({ m }: { m: (typeof weddingData.coupleStory)[0] }) {
+function StoryCard({ m }: { m: StoryMilestone }) {
   return (
     <motion.div
       data-cursor-glow
@@ -27,6 +28,7 @@ function StoryCard({ m }: { m: (typeof weddingData.coupleStory)[0] }) {
 }
 
 export default function CoupleStory() {
+  const weddingData = useWeddingData()
   return (
     <section id="story" style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />

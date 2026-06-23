@@ -2,10 +2,11 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
-import { weddingData } from '@/data/wedding-data'
+import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function GallerySection() {
+  const weddingData = useWeddingData()
   return (
     <section id="gallery" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
