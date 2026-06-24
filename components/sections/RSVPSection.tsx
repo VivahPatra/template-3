@@ -3,11 +3,15 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
+import EditableText from '@/components/ui/EditableText'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function RSVPSection() {
   const weddingData = useWeddingData()
-  const wa = `https://wa.me/${weddingData.rsvp.whatsappNumber}?text=${encodeURIComponent(weddingData.rsvp.message)}`
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
+  const wa = `https://wa.me/${d.rsvp.whatsappNumber}?text=${encodeURIComponent(d.rsvp.message)}`
 
   return (
     <section id="rsvp" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
@@ -24,7 +28,7 @@ export default function RSVPSection() {
               We joyfully await your presence.
             </p>
             <p className="font-serif text-sm leading-relaxed mb-8" style={{ color: 'var(--color-muted)' }}>
-              Please let us know by <span style={{ color: 'var(--color-accent)' }}>{weddingData.rsvp.deadline}</span>. Your confirmation helps us ensure celebrations are as beautiful as the occasion.
+              Please let us know by <EditableText field="rsvp.deadline" style={{ color: 'var(--color-accent)' }}>{d.rsvp.deadline}</EditableText>. Your confirmation helps us ensure celebrations are as beautiful as the occasion.
             </p>
             <InkDivider className="mb-8" />
             <motion.a href={wa} target="_blank" rel="noopener noreferrer"
@@ -41,8 +45,8 @@ export default function RSVPSection() {
 
           <motion.p variants={fadeUp} className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>
             Or call us at{' '}
-            <a href={`tel:+${weddingData.rsvp.whatsappNumber}`} className="glow-text font-semibold" style={{ color: 'var(--color-accent)' }}>
-              +{weddingData.rsvp.whatsappNumber}
+            <a href={`tel:+${d.rsvp.whatsappNumber}`} className="glow-text font-semibold" style={{ color: 'var(--color-accent)' }}>
+              +<EditableText field="rsvp.whatsappNumber">{d.rsvp.whatsappNumber}</EditableText>
             </a>
           </motion.p>
         </motion.div>

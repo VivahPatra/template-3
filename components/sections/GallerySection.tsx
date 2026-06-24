@@ -3,10 +3,14 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
+import EditableText from '@/components/ui/EditableText'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function GallerySection() {
   const weddingData = useWeddingData()
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
   return (
     <section id="gallery" style={{ background: 'var(--color-surface2)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
@@ -29,7 +33,7 @@ export default function GallerySection() {
           style={{ gridAutoRows: '200px', gridAutoFlow: 'dense' }}
           variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
         >
-          {weddingData.galleryImages.map((img, i) => (
+          {d.galleryImages.map((img, i) => (
             <motion.div
               key={i}
               variants={scaleIn}
@@ -64,7 +68,7 @@ export default function GallerySection() {
           style={{ color: 'var(--color-accent)', opacity: 0.6 }}
           initial={{ opacity: 0 }} whileInView={{ opacity: 0.6 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
         >
-          {weddingData.hashtag}
+          <EditableText field="hashtag">{d.hashtag}</EditableText>
         </motion.p>
       </div>
     </section>

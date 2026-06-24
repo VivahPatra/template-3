@@ -3,10 +3,14 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
+import EditableText from '@/components/ui/EditableText'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 export default function VenueSection() {
   const weddingData = useWeddingData()
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
   return (
     <section id="venue" style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
@@ -21,14 +25,14 @@ export default function VenueSection() {
           className="rounded-2xl overflow-hidden ink-shadow-lg" style={{ border: '1.5px solid var(--color-border)' }}>
           <div className="px-8 py-12 text-center" style={{ background: 'var(--color-surface2)' }}>
             <div className="text-5xl mb-4 float-slow">🏛️</div>
-            <h3 className="font-display text-3xl glow-text mb-2" style={{ color: 'var(--color-accent)' }}>{weddingData.venue.name}</h3>
-            <p className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>{weddingData.venue.address}</p>
+            <EditableText field="venue.name" tag="h3" className="font-display text-3xl glow-text mb-2" style={{ color: 'var(--color-accent)' }}>{d.venue.name}</EditableText>
+            <EditableText field="venue.address" tag="p" className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>{d.venue.address}</EditableText>
           </div>
 
           <div className="px-8 py-8" style={{ background: 'var(--color-bg)' }}>
             <p className="font-sans text-xs tracking-widest uppercase mb-5 text-center" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>Events at this venue</p>
             <div className="flex flex-wrap justify-center gap-3 mb-6">
-              {weddingData.events.filter(e => e.venue === weddingData.venue.name).map(e => (
+              {d.events.filter(e => e.venue === d.venue.name).map(e => (
                 <a
                   key={e.id}
                   href={`https://maps.google.com/?q=${encodeURIComponent(e.venue + ', ' + e.venueAddress)}`}
@@ -47,7 +51,7 @@ export default function VenueSection() {
             </div>
             <InkDivider className="my-6" />
             <div className="text-center">
-              <motion.a href={weddingData.venue.mapUrl} target="_blank" rel="noopener noreferrer"
+              <motion.a href={d.venue.mapUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-3 rounded-full font-sans text-sm font-semibold tracking-wider uppercase"
                 style={{ background: 'var(--color-accent)', color: '#fff', boxShadow: '0 4px 20px rgba(196,104,58,0.35)' }}
                 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
@@ -60,7 +64,7 @@ export default function VenueSection() {
         {/* Other venues */}
         <motion.div className="mt-8 flex flex-wrap justify-center gap-5"
           variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-          {weddingData.events.filter(e => e.venue !== weddingData.venue.name).map(e => (
+          {d.events.filter(e => e.venue !== d.venue.name).map(e => (
             <motion.a
               key={e.id} variants={fadeUp}
               href={`https://maps.google.com/?q=${encodeURIComponent(e.venue + ', ' + e.venueAddress)}`}

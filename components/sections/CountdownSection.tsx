@@ -4,6 +4,7 @@ import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import { motion } from 'framer-motion'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 function getTime(target: Date) {
@@ -13,8 +14,10 @@ function getTime(target: Date) {
 
 export default function CountdownSection() {
   const weddingData = useWeddingData()
-  const [t, setT] = useState(getTime(weddingData.weddingDate))
-  useEffect(() => { const id = setInterval(() => setT(getTime(weddingData.weddingDate)), 1000); return () => clearInterval(id) }, [weddingData.weddingDate])
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
+  const [t, setT] = useState(getTime(d.weddingDate))
+  useEffect(() => { const id = setInterval(() => setT(getTime(d.weddingDate)), 1000); return () => clearInterval(id) }, [d.weddingDate])
   const units = [{ label: 'Days', value: t.days }, { label: 'Hours', value: t.hours }, { label: 'Minutes', value: t.minutes }, { label: 'Seconds', value: t.seconds }]
 
   return (

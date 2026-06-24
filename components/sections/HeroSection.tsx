@@ -2,11 +2,15 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
+import EditableText from '@/components/ui/EditableText'
 import AutoCaricature from '@/components/ui/AutoCaricature'
 import { fadeUp, slideLeft, slideRight, staggerContainer } from '@/lib/animations'
 
 export default function HeroSection() {
   const weddingData = useWeddingData()
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" style={{ background: 'var(--color-bg)' }}>
       <FlowerOverlay />
@@ -69,7 +73,7 @@ export default function HeroSection() {
             className="font-display leading-none mb-3"
             style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', color: 'var(--color-text)' }}
           >
-            <span className="shimmer-text">{weddingData.brideName}</span>
+            <EditableText field="brideName" className="shimmer-text">{d.brideName}</EditableText>
           </motion.h1>
 
           <motion.div
@@ -93,7 +97,7 @@ export default function HeroSection() {
             className="font-display leading-none mb-8"
             style={{ fontSize: 'clamp(3rem, 8vw, 6.5rem)', color: 'var(--color-text)' }}
           >
-            <span className="shimmer-text">{weddingData.groomName}</span>
+            <EditableText field="groomName" className="shimmer-text">{d.groomName}</EditableText>
           </motion.h1>
 
           {/* Date + venue pill */}
@@ -113,7 +117,7 @@ export default function HeroSection() {
             className="font-serif text-base leading-relaxed mb-8 max-w-md mx-auto lg:mx-0 text-center lg:text-left"
             style={{ color: 'var(--color-muted)' }}
           >
-            {weddingData.tagline}
+            <EditableText field="tagline">{d.tagline}</EditableText>
           </motion.p>
 
           <motion.p
@@ -121,7 +125,7 @@ export default function HeroSection() {
             className="font-sans text-sm tracking-widest glow-text mb-16"
             style={{ color: 'var(--color-accent3)' }}
           >
-            {weddingData.hashtag}
+            <EditableText field="hashtag">{d.hashtag}</EditableText>
           </motion.p>
         </motion.div>
       </div>

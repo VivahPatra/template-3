@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { useEditMode } from '@/context/EditModeContext'
+import EditableText from '@/components/ui/EditableText'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: boolean }) {
@@ -20,6 +22,8 @@ function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: bo
 
 export default function InvitationSection() {
   const weddingData = useWeddingData()
+  const { isEditing, data } = useEditMode()
+  const d = isEditing ? data : weddingData
   return (
     <section style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
@@ -69,19 +73,19 @@ export default function InvitationSection() {
             {/* Names */}
             <div className="flex items-center justify-center gap-3 my-5">
               <div className="text-center">
-                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.brideName}</span>
-                {weddingData.brideParents && (
+                <EditableText field="brideName" className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{d.brideName}</EditableText>
+                {d.brideParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
-                    Daughter of {weddingData.brideParents}
+                    Daughter of <EditableText field="brideParents">{d.brideParents}</EditableText>
                   </p>
                 )}
               </div>
               <span className="font-display glow-text float-slow" style={{ color: 'var(--color-accent2)', fontSize: 'clamp(1.5rem, 4vw, 2.2rem)' }}>&amp;</span>
               <div className="text-center">
-                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.groomName}</span>
-                {weddingData.groomParents && (
+                <EditableText field="groomName" className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{d.groomName}</EditableText>
+                {d.groomParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
-                    Son of {weddingData.groomParents}
+                    Son of <EditableText field="groomParents">{d.groomParents}</EditableText>
                   </p>
                 )}
               </div>
@@ -94,16 +98,16 @@ export default function InvitationSection() {
               <line x1="152" y1="5" x2="300" y2="5" stroke="var(--color-accent3)" strokeWidth="0.7" opacity="0.4"/>
             </svg>
 
-            <p className="font-serif text-base md:text-lg leading-relaxed text-center mb-6" style={{ color: 'var(--color-text)', opacity: 0.8 }}>
-              {weddingData.invitationText}
-            </p>
+            <EditableText field="invitationText" tag="p" multiline className="font-serif text-base md:text-lg leading-relaxed text-center mb-6" style={{ color: 'var(--color-text)', opacity: 0.8 }}>
+              {d.invitationText}
+            </EditableText>
 
             <InkDivider className="my-6" />
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 font-sans text-sm tracking-wide" style={{ color: 'var(--color-accent)', opacity: 0.8 }}>
               <span>📅 &nbsp; December 20, 2026</span>
               <span className="hidden sm:block opacity-30" style={{ color: 'var(--color-border)' }}>◆</span>
-              <span>{weddingData.hashtag}</span>
+              <EditableText field="hashtag">{d.hashtag}</EditableText>
             </div>
           </motion.div>
         </motion.div>
