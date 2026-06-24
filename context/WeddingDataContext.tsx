@@ -23,6 +23,13 @@ function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
   if (typeof editor.tagline === 'string') d.tagline = editor.tagline
   if (typeof editor.invitationText === 'string') d.invitationText = editor.invitationText
   if (typeof editor.heroImage === 'string') d.heroImage = editor.heroImage
+  if (typeof editor.heroSubtitle === 'string') d.heroSubtitle = editor.heroSubtitle
+  if (typeof editor.invitationHeading === 'string') d.invitationHeading = editor.invitationHeading
+  if (typeof editor.invitationSubtitle === 'string') d.invitationSubtitle = editor.invitationSubtitle
+  if (typeof editor.invitationBlessing === 'string') d.invitationBlessing = editor.invitationBlessing
+  if (typeof editor.rsvpHeading === 'string') d.rsvpHeading = editor.rsvpHeading
+  if (typeof editor.rsvpText === 'string') d.rsvpText = editor.rsvpText
+  if (typeof editor.rsvpDeadline === 'string') d.rsvpDeadline = editor.rsvpDeadline
 
   // Wedding date (string -> Date)
   if (typeof editor.weddingDate === 'string') {

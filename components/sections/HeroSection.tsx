@@ -60,7 +60,7 @@ export default function HeroSection() {
             className="font-sans text-xs tracking-[0.4em] uppercase mb-6 glow-pulse"
             style={{ color: 'var(--color-accent)', opacity: 0.75 }}
           >
-            ✦ &nbsp; A Wedding Invitation &nbsp; ✦
+            {weddingData.heroSubtitle || '✦   A Wedding Invitation   ✦'}
           </motion.p>
 
           {/* Names */}

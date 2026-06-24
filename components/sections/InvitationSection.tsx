@@ -28,10 +28,10 @@ export default function InvitationSection() {
 
           <motion.div variants={fadeUp} className="text-center mb-10">
             <p className="font-sans text-xs tracking-[0.4em] uppercase mb-4 glow-pulse" style={{ color: 'var(--color-accent)', opacity: 0.7 }}>
-              ✦ &nbsp; With Joy &nbsp; ✦
+              {weddingData.invitationSubtitle || '✦   With Joy   ✦'}
             </p>
             <h2 className="font-display shimmer-text" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}>
-              You Are Invited
+              {weddingData.invitationHeading || 'You Are Invited'}
             </h2>
           </motion.div>
 
@@ -62,7 +62,7 @@ export default function InvitationSection() {
                 <img src="/assets/ganesha.gif" alt="Ganesha" className="ganesha-glow" style={{ width: 58, height: 'auto', position: 'relative', zIndex: 1 }} />
               </div>
               <p className="font-sans text-xs tracking-[0.3em] uppercase text-center mt-2 glow-pulse" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>
-                ॥ Shree Ganeshaya Namah ॥
+                {weddingData.invitationBlessing || '॥ Shree Ganeshaya Namah ॥'}
               </p>
             </div>
 

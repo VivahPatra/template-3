@@ -15,16 +15,16 @@ export default function RSVPSection() {
       <div className="max-w-2xl mx-auto text-center">
         <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
           <motion.p variants={fadeUp} className="font-sans text-xs tracking-[0.4em] uppercase mb-4 glow-pulse" style={{ color: 'var(--color-accent)', opacity: 0.7 }}>✦ &nbsp; Kindly Reply &nbsp; ✦</motion.p>
-          <motion.h2 variants={fadeUp} className="font-display shimmer-text mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}>RSVP</motion.h2>
+          <motion.h2 variants={fadeUp} className="font-display shimmer-text mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}>{weddingData.rsvpHeading || 'RSVP'}</motion.h2>
 
           <motion.div variants={scaleIn}
             className="px-8 py-10 rounded-2xl ink-shadow-lg mb-8" style={{ background: 'var(--color-bg)', border: '1.5px solid var(--color-border)' }}>
             <div className="text-4xl mb-5 float-slow">💌</div>
             <p className="font-display text-xl md:text-2xl mb-4" style={{ color: 'var(--color-text)', opacity: 0.88 }}>
-              We joyfully await your presence.
+              {weddingData.rsvpText || 'We joyfully await your presence.'}
             </p>
             <p className="font-serif text-sm leading-relaxed mb-8" style={{ color: 'var(--color-muted)' }}>
-              Please let us know by <span style={{ color: 'var(--color-accent)' }}>{weddingData.rsvp.deadline}</span>. Your confirmation helps us ensure celebrations are as beautiful as the occasion.
+              Please let us know by <span style={{ color: 'var(--color-accent)' }}>{weddingData.rsvpDeadline || weddingData.rsvp.deadline}</span>. Your confirmation helps us ensure celebrations are as beautiful as the occasion.
             </p>
             <InkDivider className="mb-8" />
             <motion.a href={wa} target="_blank" rel="noopener noreferrer"

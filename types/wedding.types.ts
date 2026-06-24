@@ -50,4 +50,11 @@ export interface WeddingConfig {
   venue: { name: string; address: string; mapUrl: string }
   rsvp: { whatsappNumber: string; message: string; deadline: string }
   socialLinks?: { instagram?: string }
+  heroSubtitle?: string
+  invitationHeading?: string
+  invitationSubtitle?: string
+  invitationBlessing?: string
+  rsvpHeading?: string
+  rsvpText?: string
+  rsvpDeadline?: string
 }
