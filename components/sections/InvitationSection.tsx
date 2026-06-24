@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { formatShortDate } from '@/lib/utils'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
 
 function CornerSvg({ flip = false, flipY = false }: { flip?: boolean; flipY?: boolean }) {
@@ -101,7 +102,7 @@ export default function InvitationSection() {
             <InkDivider className="my-6" />
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 font-sans text-sm tracking-wide" style={{ color: 'var(--color-accent)', opacity: 0.8 }}>
-              <span>📅 &nbsp; December 20, 2026</span>
+              <span>📅 &nbsp; {formatShortDate(weddingData.weddingDate)}</span>
               <span className="hidden sm:block opacity-30" style={{ color: 'var(--color-border)' }}>◆</span>
               <span>{weddingData.hashtag}</span>
             </div>
