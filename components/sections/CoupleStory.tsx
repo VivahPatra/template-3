@@ -3,12 +3,10 @@ import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
-import { useEditMode } from '@/context/EditModeContext'
-import EditableText from '@/components/ui/EditableText'
 import { fadeUp, slideLeft, slideRight, staggerContainer } from '@/lib/animations'
 import type { StoryMilestone } from '@/types/wedding.types'
 
-function StoryCard({ m, index }: { m: StoryMilestone; index: number }) {
+function StoryCard({ m }: { m: StoryMilestone }) {
   return (
     <motion.div
       data-cursor-glow
@@ -23,16 +21,14 @@ function StoryCard({ m, index }: { m: StoryMilestone; index: number }) {
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 55%, var(--color-bg) 100%)' }}/>
         </div>
       )}
-      <EditableText field="title" arrayField="coupleStory" index={index} tag="h3" className="font-display text-xl mb-1.5 glow-text" style={{ color: 'var(--color-accent)' }}>{m.title}</EditableText>
-      <EditableText field="description" arrayField="coupleStory" index={index} tag="p" multiline className="font-serif text-sm leading-relaxed" style={{ color: 'var(--color-muted)' }}>{m.description}</EditableText>
+      <h3 className="font-display text-xl mb-1.5 glow-text" style={{ color: 'var(--color-accent)' }}>{m.title}</h3>
+      <p className="font-serif text-sm leading-relaxed" style={{ color: 'var(--color-muted)' }}>{m.description}</p>
     </motion.div>
   )
 }
 
 export default function CoupleStory() {
   const weddingData = useWeddingData()
-  const { isEditing, data } = useEditMode()
-  const d = isEditing ? data : weddingData
   return (
     <section id="story" style={{ background: 'var(--color-surface)' }} className="py-28 px-6 relative">
       <FlowerOverlay />
@@ -49,7 +45,7 @@ export default function CoupleStory() {
             style={{ background: 'linear-gradient(to bottom, transparent, var(--color-accent3), transparent)', opacity: 0.35 }}/>
 
           <div className="space-y-14">
-            {d.coupleStory.map((m, i) => {
+            {weddingData.coupleStory.map((m, i) => {
               const isLeft = i % 2 === 0
               return (
                 <motion.div key={i}
@@ -58,7 +54,7 @@ export default function CoupleStory() {
                 >
                   {/* Desktop: alternating */}
                   <div className="hidden md:grid md:grid-cols-[1fr_80px_1fr] items-center gap-4">
-                    {isLeft ? <StoryCard m={m} index={i} /> : <div/>}
+                    {isLeft ? <StoryCard m={m} /> : <div/>}
                     <div className="flex flex-col items-center gap-2">
                       <motion.div
                         className="w-12 h-12 rounded-full flex items-center justify-center text-xl z-10 ink-shadow"
@@ -67,7 +63,7 @@ export default function CoupleStory() {
                       >{m.icon}</motion.div>
                       <span className="font-sans text-xs tracking-widest uppercase text-center" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>{m.date}</span>
                     </div>
-                    {!isLeft ? <StoryCard m={m} index={i} /> : <div/>}
+                    {!isLeft ? <StoryCard m={m} /> : <div/>}
                   </div>
 
                   {/* Mobile: stacked */}
@@ -77,7 +73,7 @@ export default function CoupleStory() {
                         style={{ background: 'var(--color-surface2)', border: '1.5px solid var(--color-accent3)' }}>{m.icon}</div>
                       <span className="font-sans text-xs tracking-widest uppercase" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>{m.date}</span>
                     </div>
-                    <div className="w-full"><StoryCard m={m} index={i}/></div>
+                    <div className="w-full"><StoryCard m={m}/></div>
                   </div>
                 </motion.div>
               )

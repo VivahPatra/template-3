@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { WeddingDataProvider } from '@/context/WeddingDataContext'
-import { EditModeProvider } from '@/context/EditModeContext'
 import CustomCursor from '@/components/layout/CustomCursor'
 import FloatingFABs from '@/components/layout/FloatingFABs'
 import LoadingScreen from '@/components/layout/LoadingScreen'
@@ -22,7 +21,6 @@ export default function Page() {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <EditModeProvider>
     <WeddingDataProvider>
       <CustomCursor />
       <AnimatePresence>
@@ -61,6 +59,5 @@ export default function Page() {
         </>
       )}
     </WeddingDataProvider>
-    </EditModeProvider>
   )
 }

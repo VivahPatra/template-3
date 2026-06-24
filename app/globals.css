@@ -209,20 +209,3 @@ body {
 .ganesha-backdrop {
   animation: ganeshBackdrop 2.5s ease-in-out infinite;
 }
-
-/* ── Editable highlight (inline WYSIWYG) ── */
-.editable-highlight {
-  position: relative;
-  border-bottom: 1px dashed rgba(196,104,58,0.5);
-  transition: background-color 0.2s, border-color 0.2s;
-  border-radius: 2px;
-}
-.editable-highlight:hover {
-  background-color: rgba(196,104,58,0.08);
-  border-color: rgba(196,104,58,0.7);
-}
-.editable-highlight:focus {
-  background-color: rgba(196,104,58,0.12);
-  border-color: var(--color-accent);
-  outline: none;
-}

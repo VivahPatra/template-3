@@ -1,14 +1,10 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useWeddingData } from '@/context/WeddingDataContext'
-import { useEditMode } from '@/context/EditModeContext'
-import EditableText from '@/components/ui/EditableText'
 import { fadeUp, staggerContainer } from '@/lib/animations'
 
 export default function FooterSection() {
   const weddingData = useWeddingData()
-  const { isEditing, data } = useEditMode()
-  const d = isEditing ? data : weddingData
   return (
     <footer className="relative py-24 text-center overflow-hidden" style={{ background: 'var(--color-surface2)' }}>
       {/* Warm wash */}
@@ -26,14 +22,14 @@ export default function FooterSection() {
 
           <motion.h2 variants={fadeUp} className="font-display shimmer-text mb-4"
             style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.1 }}>
-            <EditableText field="brideName">{d.brideName}</EditableText>
+            {weddingData.brideName}
             <span className="mx-3 glow-text float-slow" style={{ color: 'var(--color-accent2)', fontSize: '0.6em' }}>&amp;</span>
-            <EditableText field="groomName">{d.groomName}</EditableText>
+            {weddingData.groomName}
           </motion.h2>
 
           <motion.p variants={fadeUp} className="font-sans text-sm tracking-[0.3em] uppercase mb-2 glow-pulse"
             style={{ color: 'var(--color-accent)', opacity: 0.7 }}>
-            <EditableText field="tagline">{d.tagline}</EditableText>
+            {weddingData.tagline}
           </motion.p>
           <motion.p variants={fadeUp} className="font-sans text-xs mb-8" style={{ color: 'var(--color-muted)' }}>
             December 20, 2026 · New Delhi
@@ -43,12 +39,12 @@ export default function FooterSection() {
             style={{ background: 'linear-gradient(to right, transparent, var(--color-accent3), transparent)', opacity: 0.5 }}/>
 
           <motion.p variants={fadeUp} className="font-display text-xl glow-text mb-6" style={{ color: 'var(--color-accent)' }}>
-            <EditableText field="hashtag">{d.hashtag}</EditableText>
+            {weddingData.hashtag}
           </motion.p>
 
-          {d.socialLinks?.instagram && (
+          {weddingData.socialLinks?.instagram && (
             <motion.div variants={fadeUp} className="flex justify-center mb-8">
-              <motion.a href={d.socialLinks!.instagram} target="_blank" rel="noopener noreferrer"
+              <motion.a href={weddingData.socialLinks.instagram} target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 px-6 py-2 rounded-full font-sans text-sm ink-shadow"
                 style={{ border: '1px solid var(--color-border)', color: 'var(--color-accent)', background: 'var(--color-surface)' }}
                 whileHover={{ scale: 1.05 }}>
