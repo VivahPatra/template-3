@@ -114,6 +114,10 @@ function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
     d.socialLinks = { instagram: editor.instagram }
   }
 
+  if (editor.sections) {
+    d.sections = editor.sections as Record<string, boolean>
+  }
+
   return d
 }
 

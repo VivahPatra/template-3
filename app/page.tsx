@@ -16,6 +16,7 @@ import GallerySection from '@/components/sections/GallerySection'
 import RSVPSection from '@/components/sections/RSVPSection'
 import CountdownSection from '@/components/sections/CountdownSection'
 import FooterSection from '@/components/sections/FooterSection'
+import SectionGate from '@/components/ui/SectionGate'
 
 export default function Page() {
   const [loaded, setLoaded] = useState(false)
@@ -32,28 +33,44 @@ export default function Page() {
           <FloatingFABs />
           <div className="relative overflow-x-hidden">
             <main>
-              <HeroSection />
+              <SectionGate name="hero">
+                <HeroSection />
+              </SectionGate>
               <WaveDivider fromColor="var(--color-bg)" toColor="var(--color-surface)" />
 
-              <InvitationSection />
+              <SectionGate name="invitation">
+                <InvitationSection />
+              </SectionGate>
               <PondStrip />
 
-              <EventsSection />
+              <SectionGate name="events">
+                <EventsSection />
+              </SectionGate>
               <PondStrip />
 
-              <CoupleStory />
+              <SectionGate name="coupleStory">
+                <CoupleStory />
+              </SectionGate>
               <PondStrip />
 
-              <GallerySection />
+              <SectionGate name="gallery">
+                <GallerySection />
+              </SectionGate>
               <PondStrip />
 
-              <RSVPSection />
+              <SectionGate name="rsvp">
+                <RSVPSection />
+              </SectionGate>
               <PondStrip />
 
-              <CountdownSection />
+              <SectionGate name="countdown">
+                <CountdownSection />
+              </SectionGate>
               <WaveDivider fromColor="var(--color-surface)" toColor="var(--color-surface2)" />
 
-              <FooterSection />
+              <SectionGate name="footer">
+                <FooterSection />
+              </SectionGate>
             </main>
           </div>
         </>

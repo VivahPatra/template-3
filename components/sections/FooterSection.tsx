@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { formatShortDate } from '@/lib/utils'
 import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, staggerContainer } from '@/lib/animations'
 
@@ -32,7 +33,7 @@ export default function FooterSection() {
             {weddingData.tagline}
           </motion.p>
           <motion.p variants={fadeUp} className="font-sans text-xs mb-8" style={{ color: 'var(--color-muted)' }}>
-            December 20, 2026 · New Delhi
+            {formatShortDate(weddingData.weddingDate)}
           </motion.p>
 
           <motion.div variants={fadeUp} className="h-px w-28 mx-auto mb-7"
