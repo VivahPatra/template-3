@@ -43,7 +43,7 @@ body {
   overflow-x: hidden;
 }
 
-* { cursor: none !important; }
+@media (pointer: fine) { * { cursor: none !important; } }
 
 ::selection {
   background-color: var(--color-accent);
