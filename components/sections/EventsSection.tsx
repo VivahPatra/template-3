@@ -115,10 +115,10 @@ function EventNode({
           href={mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mt-2 font-sans text-xs tracking-wider underline underline-offset-2 hover:opacity-100 transition-opacity duration-200"
-          style={{ color, opacity: 0.85 }}
+          className="inline-flex items-center gap-1 mt-3 px-4 py-2 rounded-full font-sans text-xs font-semibold tracking-wider transition-all hover:opacity-90"
+          style={{ background: 'var(--color-surface)', color: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
         >
-          📍 View on Maps
+          📍 Get Directions
         </a>
       </div>
     </motion.article>
