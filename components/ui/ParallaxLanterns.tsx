@@ -36,7 +36,7 @@ export default function ParallaxLanterns() {
         }
       `}</style>
       {LANTERNS.map((l, i) => (
-        <div key={i} className="absolute" style={{ left: l.x, bottom: 0 }}>
+        <div key={i} className="absolute" style={{ left: l.x, top: '100%' }}>
           <div style={{ animation: `lanternRise ${l.riseDur}s linear ${l.delay}s infinite` }}>
             <div style={{ animation: `lanternSway ${l.riseDur * 0.3}s ease-in-out infinite` }}>
               <img

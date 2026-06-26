@@ -36,7 +36,7 @@ export default function HeroSection() {
           className="w-full max-w-md mx-auto lg:mx-0"
         >
           <div className="relative rounded-2xl overflow-hidden" style={{ border: 'none' }}>
-            <AutoCaricature src="/assets/2.jpg" alt="Couple" className="w-full" />
+            <AutoCaricature src={weddingData.heroImage || '/assets/2.jpg'} alt="Couple" className="w-full" />
             <div className="absolute inset-0 pointer-events-none" style={{
               background: `
                 radial-gradient(ellipse 80% 80% at 50% 50%, transparent 50%, var(--color-bg) 100%),
