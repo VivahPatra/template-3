@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import { useWeddingData } from '@/context/WeddingDataContext'
+import { formatShortDate } from '@/lib/utils'
 import AutoCaricature from '@/components/ui/AutoCaricature'
 import { fadeUp, slideLeft, slideRight, staggerContainer } from '@/lib/animations'
 
@@ -103,7 +104,7 @@ export default function HeroSection() {
             style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
           >
             <span className="font-sans text-sm font-semibold tracking-wider" style={{ color: 'var(--color-accent)' }}>
-              📅 20 December 2026
+              📅 {formatShortDate(weddingData.weddingDate)}
             </span>
           </motion.div>
 
