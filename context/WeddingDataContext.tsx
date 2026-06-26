@@ -126,12 +126,15 @@ export function WeddingDataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     function handleMessage(event: MessageEvent) {
-      if (event.data?.type === 'VIVAHPATRA_UPDATE') {
-        setData(mapEditorData(event.data.payload ?? event.data))
+      if (event.data?.type === 'VIVAHPATRA_UPDATE' && event.data.data) {
+        setData(mapEditorData(event.data.data as Record<string, unknown>))
       }
     }
     window.addEventListener('message', handleMessage)
-if (window.parent !== window) {      window.parent.postMessage({ type: 'VIVAHPATRA_READY' }, '*')    }
+
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'VIVAHPATRA_READY' }, '*')
+    }
     return () => window.removeEventListener('message', handleMessage)
   }, [])
 
