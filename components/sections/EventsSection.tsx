@@ -115,8 +115,8 @@ function EventNode({
           href={mapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 mt-3 px-4 py-2 rounded-full font-sans text-xs font-semibold tracking-wider transition-all hover:opacity-90"
-          style={{ background: 'var(--color-surface)', color: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+          className="inline-flex items-center gap-1 mt-3 px-4 py-2 rounded-full font-sans text-xs font-semibold whitespace-nowrap tracking-wider transition-all hover:opacity-90"
+          style={{ background: 'var(--color-surface)', color: '#3a2018', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
         >
           📍 Get Directions
         </a>
