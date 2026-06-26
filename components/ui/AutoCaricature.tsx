@@ -85,27 +85,45 @@ interface Props {
 
 export default function AutoCaricature({ src, alt = '', className = '' }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [result, setResult] = useState<'loading' | 'caricature' | 'fallback'>('loading')
   const [dataUrl, setDataUrl] = useState<string | null>(null)
 
   useEffect(() => {
+    setResult('loading')
+    setDataUrl(null)
+
     const img = new Image()
     img.crossOrigin = 'anonymous'
+
     img.onload = () => {
-      const canvas = canvasRef.current!
-      resizeAndDraw(img, canvas)
-      cartoonify(canvas)
-      setDataUrl(canvas.toDataURL('image/png'))
+      try {
+        const canvas = canvasRef.current!
+        resizeAndDraw(img, canvas)
+        cartoonify(canvas)
+        setDataUrl(canvas.toDataURL('image/png'))
+        setResult('caricature')
+      } catch {
+        setResult('fallback')
+      }
     }
+
+    img.onerror = () => {
+      const retry = new Image()
+      retry.onload = () => setResult('fallback')
+      retry.onerror = () => setResult('fallback')
+      retry.src = src
+    }
+
     img.src = src
   }, [src])
 
   return (
     <div className={className}>
       <canvas ref={canvasRef} className="hidden" />
-      {dataUrl ? (
+      {result === 'caricature' && dataUrl ? (
         <img src={dataUrl} alt={alt} className="w-full h-auto block" style={{ filter: 'sepia(0.08) saturate(1.1)' }} />
       ) : (
-        <img src={src} alt={alt} className="w-full h-auto block opacity-30" />
+        <img src={src} alt={alt} className="w-full h-auto block" style={{ filter: result === 'loading' ? 'opacity(0.3)' : 'sepia(0.08) saturate(1.1)' }} />
       )}
     </div>
   )

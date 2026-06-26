@@ -10,7 +10,7 @@ export const weddingData: WeddingConfig = {
   tagline: 'A love story written in the stars',
   invitationText:
     'With the blessings of our families and the grace of the Almighty, Simran and Kabir joyfully invite you to witness the beginning of their forever. Your love and presence will make this moment truly complete.',
-  heroImage: '/assets/hero.jpg',
+  heroImage: '/assets/2.jpg',
 
   events: [
     { id: 'engagement', name: 'Engagement', emoji: '💍', date: 'December 16, 2026', time: '6:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/engagement.png', color: '#c9a84c', description: 'Rings, promises and the beginning of forever.' },
