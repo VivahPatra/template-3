@@ -5,7 +5,7 @@ import { WeddingDataProvider } from '@/context/WeddingDataContext'
 import CustomCursor from '@/components/layout/CustomCursor'
 import FloatingFABs from '@/components/layout/FloatingFABs'
 import LoadingScreen from '@/components/layout/LoadingScreen'
-import FloralPetals from '@/components/ui/FloralPetals'
+import ParallaxLanterns from '@/components/ui/ParallaxLanterns'
 import WaveDivider from '@/components/ui/WaveDivider'
 import PondStrip from '@/components/ui/PondStrip'
 import HeroSection from '@/components/sections/HeroSection'
@@ -29,7 +29,7 @@ export default function Page() {
       </AnimatePresence>
       {loaded && (
         <>
-          <FloralPetals count={22} />
+          <ParallaxLanterns />
           <FloatingFABs />
           <div className="relative overflow-x-hidden">
             <main>
