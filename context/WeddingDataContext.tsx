@@ -118,6 +118,12 @@ function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
     d.sections = editor.sections as Record<string, boolean>
   }
 
+  // Name order swap
+  if (editor.groomFirst === false) {
+    const tmpName = d.groomName; d.groomName = d.brideName; d.brideName = tmpName
+    const tmpParents = d.groomParents; d.groomParents = d.brideParents; d.brideParents = tmpParents
+    if ("groomSubtitle" in d && "brideSubtitle" in d) { const tmpSub = d.groomSubtitle; d.groomSubtitle = d.brideSubtitle; d.brideSubtitle = tmpSub }
+  }
   return d
 }
 
