@@ -73,7 +73,7 @@ export default function InvitationSection() {
                 <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.brideName}</span>
                 {weddingData.brideParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
-                    Daughter of {weddingData.brideParents}
+                    {weddingData.groomFirst === false ? 'Son' : 'Daughter'} of {weddingData.brideParents}
                   </p>
                 )}
               </div>
@@ -82,7 +82,7 @@ export default function InvitationSection() {
                 <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.groomName}</span>
                 {weddingData.groomParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
-                    Son of {weddingData.groomParents}
+                    {weddingData.groomFirst === false ? 'Daughter' : 'Son'} of {weddingData.groomParents}
                   </p>
                 )}
               </div>

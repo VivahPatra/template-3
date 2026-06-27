@@ -57,5 +57,6 @@ export interface WeddingConfig {
   rsvpHeading?: string
   rsvpText?: string
   rsvpDeadline?: string
+  groomFirst?: boolean
   sections?: Record<string, boolean>
 }
