@@ -42,7 +42,7 @@ export default function RSVPSection() {
           <motion.p variants={fadeUp} className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>
             Or call us at{' '}
             <a href={`tel:+${weddingData.rsvp.whatsappNumber}`} className="glow-text font-semibold" style={{ color: 'var(--color-accent)' }}>
-              +{weddingData.rsvp.whatsappNumber}
+              {weddingData.rsvp.whatsappNumber}
             </a>
           </motion.p>
         </motion.div>
