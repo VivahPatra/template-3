@@ -4,6 +4,7 @@ import FlowerOverlay from '@/components/ui/FlowerOverlay'
 import InkDivider from '@/components/ui/InkDivider'
 import { useWeddingData } from '@/context/WeddingDataContext'
 import { fadeUp, scaleIn, staggerContainer } from '@/lib/animations'
+import { formatShortDate } from '@/lib/utils'
 
 export default function VenueSection() {
   const weddingData = useWeddingData()
@@ -22,7 +23,10 @@ export default function VenueSection() {
           <div className="px-8 py-12 text-center" style={{ background: 'var(--color-surface2)' }}>
             <div className="text-5xl mb-4 float-slow">🏛️</div>
             <h3 className="font-display text-3xl glow-text mb-2" style={{ color: 'var(--color-accent)' }}>{weddingData.venue.name}</h3>
-            <p className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>{weddingData.venue.address}</p>
+            <p className="font-sans text-sm mb-2" style={{ color: 'var(--color-muted)' }}>{weddingData.venue.address}</p>
+            <p className="font-sans text-xs tracking-[0.3em] uppercase mb-8" style={{ color: 'var(--color-accent)', opacity: 0.7 }}>
+              {formatShortDate(weddingData.weddingDate)} · {weddingData.weddingDate.toLocaleTimeString('en-IN', { hour: 'numeric', minute: '2-digit', hour12: true })}
+            </p>
           </div>
 
           <div className="px-8 py-8 text-center" style={{ background: 'var(--color-bg)' }}>
