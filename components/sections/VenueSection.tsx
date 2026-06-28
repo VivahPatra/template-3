@@ -25,58 +25,14 @@ export default function VenueSection() {
             <p className="font-sans text-sm" style={{ color: 'var(--color-muted)' }}>{weddingData.venue.address}</p>
           </div>
 
-          <div className="px-8 py-8" style={{ background: 'var(--color-bg)' }}>
-            <p className="font-sans text-xs tracking-widest uppercase mb-5 text-center" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>Events at this venue</p>
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              {weddingData.events.filter(e => e.venue === weddingData.venue.name).map(e => (
-                <a
-                  key={e.id}
-                  href={`https://maps.google.com/?q=${encodeURIComponent(e.venue + ', ' + e.venueAddress)}`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl hover:opacity-80 transition-opacity"
-                  style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', minWidth: 220 }}
-                >
-                  <span className="text-xl float-emoji">{e.emoji}</span>
-                  <div>
-                    <p className="font-display text-base" style={{ color: 'var(--color-text)' }}>{e.name}</p>
-                    <p className="font-sans text-xs" style={{ color: 'var(--color-muted)' }}>{e.date} · {e.time}</p>
-                    <p className="font-sans text-xs mt-0.5" style={{ color: 'var(--color-accent)', opacity: 0.7 }}>📍 {e.venueAddress}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-            <InkDivider className="my-6" />
-            <div className="text-center">
-              <motion.a href={weddingData.venue.mapUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-3 rounded-full font-sans text-sm font-semibold tracking-wider uppercase"
-                style={{ background: 'var(--color-accent)', color: '#fff', boxShadow: '0 4px 20px rgba(196,104,58,0.35)' }}
-                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-                📍 Get Directions
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Other venues */}
-        <motion.div className="mt-8 flex flex-wrap justify-center gap-5"
-          variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-          {weddingData.events.filter(e => e.venue !== weddingData.venue.name).map(e => (
-            <motion.a
-              key={e.id} variants={fadeUp}
-              href={`https://maps.google.com/?q=${encodeURIComponent(e.venue + ', ' + e.venueAddress)}`}
-              target="_blank" rel="noopener noreferrer"
-              className="px-5 py-4 rounded-xl ink-shadow hover:opacity-80 transition-opacity"
-              style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', minWidth: 260, flex: '1 1 260px', maxWidth: 340 }}
-            >
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl float-emoji">{e.emoji}</span>
-                <h4 className="font-display text-lg" style={{ color: e.color || 'var(--color-accent)' }}>{e.name}</h4>
-              </div>
-              <p className="font-sans text-sm font-medium mb-0.5" style={{ color: 'var(--color-text)', opacity: 0.85 }}>{e.venue}</p>
-              <p className="font-sans text-xs" style={{ color: 'var(--color-muted)' }}>{e.venueAddress}</p>
-              <p className="font-sans text-xs mt-1" style={{ color: 'var(--color-accent)', opacity: 0.7 }}>📍 {e.date} · {e.time}</p>
+          <div className="px-8 py-8 text-center" style={{ background: 'var(--color-bg)' }}>
+            <motion.a href={weddingData.venue.mapUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3 rounded-full font-sans text-sm font-semibold tracking-wider uppercase"
+              style={{ background: 'var(--color-accent)', color: '#fff', boxShadow: '0 4px 20px rgba(196,104,58,0.35)' }}
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+              📍 Get Directions
             </motion.a>
-          ))}
+          </div>
         </motion.div>
       </div>
     </section>

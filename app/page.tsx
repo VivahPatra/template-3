@@ -13,6 +13,7 @@ import InvitationSection from '@/components/sections/InvitationSection'
 import CoupleStory from '@/components/sections/CoupleStory'
 import EventsSection from '@/components/sections/EventsSection'
 import GallerySection from '@/components/sections/GallerySection'
+import VenueSection from '@/components/sections/VenueSection'
 import RSVPSection from '@/components/sections/RSVPSection'
 import CountdownSection from '@/components/sections/CountdownSection'
 import FooterSection from '@/components/sections/FooterSection'
@@ -55,6 +56,11 @@ export default function Page() {
 
               <SectionGate name="gallery">
                 <GallerySection />
+              </SectionGate>
+              <PondStrip />
+
+              <SectionGate name="venue">
+                <VenueSection />
               </SectionGate>
               <PondStrip />
 
