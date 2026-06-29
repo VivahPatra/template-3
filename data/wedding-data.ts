@@ -13,12 +13,12 @@ export const weddingData: WeddingConfig = {
   heroImage: '/assets/2.jpg',
 
   events: [
-    { id: 'engagement', name: 'Engagement', emoji: '💍', date: 'December 16, 2026', time: '6:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/engagement.png', color: '#c9a84c', description: 'Rings, promises and the beginning of forever.' },
-    { id: 'mehendi', name: 'Mehendi', emoji: '🌿', date: 'December 17, 2026', time: '4:00 PM', venue: 'The Garden Terrace', venueAddress: '12 Rosewood Lane, Delhi', image: '/assets/events/mehendi.png', color: '#4a7c59', description: 'Henna, laughter and the fragrance of mogra.' },
-    { id: 'haldi',   name: 'Haldi',   emoji: '✨', date: 'December 18, 2026', time: '10:00 AM', venue: 'Family Courtyard', venueAddress: '45 Sunset Marg, Delhi', image: '/assets/events/haldi.png', color: '#c8922a', description: 'Turmeric, blessings and golden memories.' },
-    { id: 'sangeet', name: 'Sangeet', emoji: '🎶', date: 'December 18, 2026', time: '7:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/sangeet.png', color: '#8b2635', description: 'Dance, music and a night full of stars.' },
-    { id: 'wedding', name: 'Wedding', emoji: '💍', date: 'December 20, 2026', time: '10:00 AM', venue: 'Shri Sai Mandir Banquet', venueAddress: 'Temple Road, Connaught Place, Delhi', image: '/assets/events/wedding.png', color: '#c4683a', description: 'Seven vows, one forever.' },
-    { id: 'reception', name: 'Reception', emoji: '🥂', date: 'December 20, 2026', time: '7:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/reception.png', color: '#9b6b9b', description: 'Dinner, dancing and a night to remember.' },
+    { id: 'engagement', name: 'Engagement', emoji: '💍', date: 'December 16, 2026', time: '6:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/engagement.webp', color: '#c9a84c', description: 'Rings, promises and the beginning of forever.' },
+    { id: 'mehendi', name: 'Mehendi', emoji: '🌿', date: 'December 17, 2026', time: '4:00 PM', venue: 'The Garden Terrace', venueAddress: '12 Rosewood Lane, Delhi', image: '/assets/events/mehendi.webp', color: '#4a7c59', description: 'Henna, laughter and the fragrance of mogra.' },
+    { id: 'haldi',   name: 'Haldi',   emoji: '✨', date: 'December 18, 2026', time: '10:00 AM', venue: 'Family Courtyard', venueAddress: '45 Sunset Marg, Delhi', image: '/assets/events/haldi.webp', color: '#c8922a', description: 'Turmeric, blessings and golden memories.' },
+    { id: 'sangeet', name: 'Sangeet', emoji: '🎶', date: 'December 18, 2026', time: '7:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/sangeet.webp', color: '#8b2635', description: 'Dance, music and a night full of stars.' },
+    { id: 'wedding', name: 'Wedding', emoji: '💍', date: 'December 20, 2026', time: '10:00 AM', venue: 'Shri Sai Mandir Banquet', venueAddress: 'Temple Road, Connaught Place, Delhi', image: '/assets/events/wedding.webp', color: '#c4683a', description: 'Seven vows, one forever.' },
+    { id: 'reception', name: 'Reception', emoji: '🥂', date: 'December 20, 2026', time: '7:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/reception.webp', color: '#9b6b9b', description: 'Dinner, dancing and a night to remember.' },
   ],
 
   galleryImages: [

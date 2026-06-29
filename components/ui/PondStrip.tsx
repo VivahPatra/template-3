@@ -49,7 +49,7 @@ export default function PondStrip() {
           animation: `${s.dir === 'ltr' ? 'swanLTR' : 'swanRTL'} ${s.dur}s linear infinite`,
           animationDelay: `${s.delay}s`,
         }}>
-          <img src="/assets/swan.png" alt="" style={{
+          <img src="/assets/swan.webp" alt="" style={{
             width: s.size,
             height: 'auto',
             filter: 'brightness(1.1)',

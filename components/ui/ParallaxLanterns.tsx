@@ -40,7 +40,7 @@ export default function ParallaxLanterns() {
           <div style={{ animation: `lanternRise ${l.riseDur}s linear ${l.delay}s infinite` }}>
             <div style={{ animation: `lanternSway ${l.riseDur * 0.3}s ease-in-out infinite` }}>
               <img
-                src="/assets/lantern.png"
+                src="/assets/lantern.webp"
                 alt=""
                 style={{
                   width: `clamp(${l.size}px, ${Math.round(l.size * 0.15)}vw, ${l.size * 2}px)`,
