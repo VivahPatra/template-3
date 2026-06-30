@@ -50,6 +50,7 @@ function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
       color: String(ev.color ?? 'var(--color-accent)'),
       ...(ev.description ? { description: String(ev.description) } : {}),
       ...(ev.image ? { image: String(ev.image) } : {}),
+      hidden: Boolean(ev.hidden),
     }))
   }
 

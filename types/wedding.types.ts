@@ -9,6 +9,7 @@ export interface WeddingEvent {
   image?: string
   color: string
   description?: string
+  hidden?: boolean
 }
 
 export interface GalleryImage {
