@@ -70,7 +70,7 @@ export default function InvitationSection() {
             {/* Names */}
             <div className="flex items-center justify-center gap-3 my-5">
               <div className="text-center">
-                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.brideName}</span>
+                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', lineHeight: 1.2, padding: '0.1em 0' }}>{weddingData.brideName}</span>
                 {weddingData.brideParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
                     {weddingData.groomFirst === false ? 'Son' : 'Daughter'} of {weddingData.brideParents}
@@ -79,7 +79,7 @@ export default function InvitationSection() {
               </div>
               <span className="font-display glow-text float-slow" style={{ color: 'var(--color-accent2)', fontSize: 'clamp(1.5rem, 4vw, 2.2rem)' }}>&amp;</span>
               <div className="text-center">
-                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{weddingData.groomName}</span>
+                <span className="font-display shimmer-text block" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', lineHeight: 1.2, padding: '0.1em 0' }}>{weddingData.groomName}</span>
                 {weddingData.groomParents && (
                   <p className="font-sans text-xs tracking-wide mt-1" style={{ color: 'var(--color-muted)', opacity: 0.7 }}>
                     {weddingData.groomFirst === false ? 'Daughter' : 'Son'} of {weddingData.groomParents}
