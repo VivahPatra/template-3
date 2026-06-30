@@ -22,7 +22,7 @@ export default function FooterSection() {
           <motion.div variants={fadeUp} className="text-4xl mb-6 float-slow">💍</motion.div>
 
           <motion.h2 variants={fadeUp} className="font-display shimmer-text mb-4"
-            style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.1 }}>
+            style={{ fontSize: 'clamp(2.1rem, 6.5vw, 4rem)', lineHeight: 1.3, padding: '0.1em 0' }}>
             {weddingData.brideName}
             <span className="mx-3 glow-text float-slow" style={{ color: 'var(--color-accent2)', fontSize: '0.6em' }}>&amp;</span>
             {weddingData.groomName}
