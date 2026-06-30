@@ -48,6 +48,7 @@ export default function CustomCursor() {
   }, [cursorType])
 
   if (!mounted) return null
+  if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return null
 
   const isCard = cursorType === 'card'
   const isLink = cursorType === 'link'
