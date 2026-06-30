@@ -68,7 +68,7 @@ export default function HeroSection() {
           <motion.h1
             variants={fadeUp}
             className="font-display mb-3"
-            style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', color: 'var(--color-text)', lineHeight: 1.2, padding: '0.1em 0' }}
+            style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', color: 'var(--color-text)', lineHeight: 1.5, padding: '0.15em 0' }}
           >
             <span className="shimmer-text">{weddingData.brideName}</span>
           </motion.h1>
@@ -92,7 +92,7 @@ export default function HeroSection() {
           <motion.h1
             variants={fadeUp}
             className="font-display mb-8"
-            style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', color: 'var(--color-text)', lineHeight: 1.2, padding: '0.1em 0' }}
+            style={{ fontSize: 'clamp(2.6rem, 6.5vw, 5.5rem)', color: 'var(--color-text)', lineHeight: 1.5, padding: '0.15em 0' }}
           >
             <span className="shimmer-text">{weddingData.groomName}</span>
           </motion.h1>
