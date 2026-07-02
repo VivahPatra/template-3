@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import { X, MessageCircle } from 'lucide-react'
 
@@ -12,13 +12,16 @@ interface Props {
 }
 
 export default function RSVPModal({ open, onClose, onSend, defaultMessage, brideName, groomName }: Props) {
+  const [guestName, setGuestName] = useState('')
   const [guestCount, setGuestCount] = useState(1)
   const [message, setMessage] = useState(defaultMessage)
 
   if (!open) return null
 
   const handleSend = () => {
-    const fullMessage = `${message}\n\nNumber of guests attending: ${guestCount}`
+    const namePrefix = guestName.trim() ? `Name: ${guestName.trim()}\n` : ''
+    const fullMessage = `${namePrefix}${message}\n\nNumber of guests attending: ${guestCount}`
+    window.parent.postMessage({ type: 'VIVAHPATRA_RSVP', guestName: guestName.trim(), guestCount }, '*')
     onSend(guestCount, fullMessage)
   }
 
@@ -41,6 +44,17 @@ export default function RSVPModal({ open, onClose, onSend, defaultMessage, bride
           Let us know how many will be joining
         </p>
 
+        <label className="block font-sans text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-accent)' }}>
+          Your Name
+        </label>
+        <input
+          type="text"
+          value={guestName}
+          onChange={e => setGuestName(e.target.value)}
+          placeholder="Enter your name"
+          className="w-full rounded-lg p-3 font-sans text-sm mb-6 outline-none"
+          style={{ background: 'var(--color-surface)', color: 'var(--color-text)', border: '1px solid var(--color-border)' }}
+        />
         <label className="block font-sans text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--color-accent)' }}>
           Number of Guests
         </label>
