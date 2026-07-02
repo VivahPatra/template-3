@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Music, Volume2 } from 'lucide-react'
 import { useWeddingData, useIsPreview } from '@/context/WeddingDataContext'
 
@@ -8,6 +8,7 @@ export default function FloatingFABs() {
   const { backgroundMusic } = useWeddingData()
   const isPreview = useIsPreview()
   const [isPlaying, setIsPlaying] = useState(false)
+  const [showHint, setShowHint] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
@@ -21,13 +22,16 @@ export default function FloatingFABs() {
   }, [backgroundMusic])
 
   useEffect(() => {
-    if (isPreview && audioRef.current) {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
-    }
+    if (!isPreview || !audioRef.current) return
+    audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {
+      setShowHint(true)
+      setTimeout(() => setShowHint(false), 4000)
+    })
   }, [isPreview])
 
   const toggleAudio = () => {
     if (!audioRef.current) return
+    setShowHint(false)
     if (isPlaying) { audioRef.current.pause(); setIsPlaying(false) }
     else audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
   }
@@ -40,14 +44,25 @@ export default function FloatingFABs() {
   }
 
   return (
-    <div className="fixed bottom-8 right-6 z-40">
+    <div className="fixed bottom-8 right-6 z-40 flex flex-col items-end gap-2">
+      <AnimatePresence>
+        {showHint && (
+          <motion.div
+            initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
+            className="text-xs px-3 py-1.5 rounded-full whitespace-nowrap"
+            style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border-strong)', color: 'var(--color-accent)' }}
+          >
+            ♪ Tap to play music
+          </motion.div>
+        )}
+      </AnimatePresence>
       <motion.button
         onClick={toggleAudio}
         className="w-12 h-12 rounded-full flex items-center justify-center"
         style={isPlaying ? { ...btnStyle, boxShadow: '0 4px 24px rgba(196,104,58,0.45)', borderColor: 'var(--color-accent)' } : btnStyle}
         initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 2.5 }}
+        animate={showHint ? { scale: [1, 1.15, 1], opacity: 1 } : { scale: 1, opacity: 1 }}
+        transition={showHint ? { repeat: Infinity, duration: 1 } : { delay: 2.5 }}
         whileHover={{ scale: 1.1, boxShadow: '0 4px 24px rgba(196,104,58,0.3)' }}
         aria-label="Toggle music"
       >
