@@ -44,7 +44,7 @@ export default function FloatingFABs() {
   }
 
   return (
-    <div className="fixed bottom-8 right-6 z-40 flex flex-col items-end gap-2">
+    <div className="fixed bottom-20 sm:bottom-8 right-4 sm:right-6 z-[9990] flex flex-col items-end gap-2">
       <AnimatePresence>
         {showHint && (
           <motion.div
