@@ -5,6 +5,21 @@ import { useWeddingData } from '@/context/WeddingDataContext'
 
 export default function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const weddingData = useWeddingData()
+  const [pct, setPct] = useState(0)
+  useEffect(() => {
+    let frame: number
+    const start = performance.now()
+    const duration = 2500
+    const tick = (now: number) => {
+      const elapsed = now - start
+      const next = Math.min(100, Math.round((elapsed / duration) * 100))
+      setPct(next)
+      if (next < 100) { frame = requestAnimationFrame(tick) }
+      else { onComplete() }
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [])
   return (
     <motion.div
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
