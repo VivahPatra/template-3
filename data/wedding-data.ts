@@ -12,6 +12,7 @@ export const weddingData: WeddingConfig = {
     'With the blessings of our families and the grace of the Almighty, Simran and Kabir joyfully invite you to witness the beginning of their forever. Your love and presence will make this moment truly complete.',
   heroImage: '/assets/2.jpg',
 
+  backgroundMusic: 'https://vivahpatra.co/music/ek-ladki-ko-dekha.mp3',
   events: [
     { id: 'engagement', name: 'Engagement', emoji: '💍', date: 'December 16, 2026', time: '6:00 PM', venue: 'The Grand Ballroom', venueAddress: 'Hotel Imperial, Delhi', image: '/assets/events/engagement.webp', color: '#c9a84c', description: 'Rings, promises and the beginning of forever.' },
     { id: 'mehendi', name: 'Mehendi', emoji: '🌿', date: 'December 17, 2026', time: '4:00 PM', venue: 'The Garden Terrace', venueAddress: '12 Rosewood Lane, Delhi', image: '/assets/events/mehendi.webp', color: '#4a7c59', description: 'Henna, laughter and the fragrance of mogra.' },

@@ -1,21 +1,35 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Music, Volume2 } from 'lucide-react'
+import { useWeddingData, useIsPreview } from '@/context/WeddingDataContext'
 
 export default function FloatingFABs() {
+  const { backgroundMusic } = useWeddingData()
+  const isPreview = useIsPreview()
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const toggleAudio = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio('/assets/music.mp3')
-      audioRef.current.loop = true
-      audioRef.current.volume = 0.35
+  useEffect(() => {
+    const src = backgroundMusic || ''
+    if (!src) return
+    const audio = new Audio(src)
+    audio.loop = true
+    audio.volume = 0.35
+    audioRef.current = audio
+    return () => { audio.pause(); audio.src = '' }
+  }, [backgroundMusic])
+
+  useEffect(() => {
+    if (isPreview && audioRef.current) {
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
     }
-    if (isPlaying) audioRef.current.pause()
-    else audioRef.current.play().catch(() => {})
-    setIsPlaying(!isPlaying)
+  }, [isPreview])
+
+  const toggleAudio = () => {
+    if (!audioRef.current) return
+    if (isPlaying) { audioRef.current.pause(); setIsPlaying(false) }
+    else audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {})
   }
 
   const btnStyle = {
