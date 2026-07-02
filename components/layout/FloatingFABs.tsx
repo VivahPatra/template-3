@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Music, Volume2 } from 'lucide-react'
@@ -18,16 +18,14 @@ export default function FloatingFABs() {
     audio.loop = true
     audio.volume = 0.35
     audioRef.current = audio
+    if (isPreview) {
+      audio.play().then(() => setIsPlaying(true)).catch(() => {
+        setShowHint(true)
+        setTimeout(() => setShowHint(false), 4000)
+      })
+    }
     return () => { audio.pause(); audio.src = '' }
-  }, [backgroundMusic])
-
-  useEffect(() => {
-    if (!isPreview || !audioRef.current) return
-    audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {
-      setShowHint(true)
-      setTimeout(() => setShowHint(false), 4000)
-    })
-  }, [isPreview])
+  }, [backgroundMusic, isPreview])
 
   const toggleAudio = () => {
     if (!audioRef.current) return
