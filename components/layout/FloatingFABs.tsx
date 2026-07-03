@@ -18,6 +18,7 @@ export default function FloatingFABs() {
     audio.loop = true
     audio.volume = 0.35
     audioRef.current = audio
+    setIsPlaying(false)
     if (isPreview) {
       audio.play().then(() => setIsPlaying(true)).catch(() => {
         setShowHint(true)

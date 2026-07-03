@@ -23,6 +23,7 @@ function mapEditorData(editor: Record<string, unknown>): WeddingConfig {
   if (typeof editor.tagline === 'string') d.tagline = editor.tagline
   if (typeof editor.invitationText === 'string') d.invitationText = editor.invitationText
   if (typeof editor.heroImage === 'string') d.heroImage = editor.heroImage
+  if (typeof editor.backgroundMusic === 'string' && editor.backgroundMusic) d.backgroundMusic = editor.backgroundMusic
   if (typeof editor.heroSubtitle === 'string') d.heroSubtitle = editor.heroSubtitle
   if (typeof editor.invitationHeading === 'string') d.invitationHeading = editor.invitationHeading
   if (typeof editor.invitationSubtitle === 'string') d.invitationSubtitle = editor.invitationSubtitle
