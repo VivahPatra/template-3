@@ -60,7 +60,7 @@ export default function InvitationSection() {
             <div className="flex flex-col items-center mb-3">
               <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="ganesha-backdrop" style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,210,80,0.75) 0%, rgba(201,168,76,0.35) 55%, transparent 75%)', filter: 'blur(10px)' }} />
-                <img src="/assets/ganesha.gif" alt="Ganesha" className="ganesha-glow" style={{ width: 58, height: 'auto', position: 'relative', zIndex: 1 }} />
+                <img loading="lazy" src="/assets/ganesha.webp" alt="Ganesha" className="ganesha-glow" style={{ width: 58, height: 'auto', position: 'relative', zIndex: 1 }} />
               </div>
               <p className="font-sans text-xs tracking-[0.3em] uppercase text-center mt-2 glow-pulse" style={{ color: 'var(--color-accent)', opacity: 0.6 }}>
                 {weddingData.invitationBlessing || '॥ Shree Ganeshaya Namah ॥'}

@@ -17,7 +17,7 @@ function StoryCard({ m }: { m: StoryMilestone }) {
     >
       {m.image && (
         <div className="relative h-36 rounded-lg overflow-hidden mb-4">
-          <img src={m.image} alt={m.title} className="w-full h-full object-cover" style={{ filter: 'saturate(0.9)' }}/>
+          <img loading="lazy" src={m.image} alt={m.title} className="w-full h-full object-cover" style={{ filter: 'saturate(0.9)' }}/>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 55%, var(--color-bg) 100%)' }}/>
         </div>
       )}
