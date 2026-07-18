@@ -97,8 +97,8 @@ export default function RSVPSection() {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }} onClick={() => setShowPurchaseAlert(false)}>
           <div className="rounded-2xl p-8 max-w-sm w-full text-center" style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)' }} onClick={e => e.stopPropagation()}>
             <div className="text-4xl mb-4">🔒</div>
-            <h3 className="font-display text-xl mb-3" style={{ color: 'var(--color-text)' }}>Purchase Required</h3>
-            <p className="font-sans text-sm mb-6" style={{ color: 'var(--color-muted)' }}>You need to purchase this card to send RSVPs.</p>
+            <h3 className="font-display text-xl mb-3" style={{ color: 'var(--color-text)' }}>Preview Only</h3>
+            <p className="font-sans text-sm mb-6" style={{ color: 'var(--color-muted)' }}>Open your published invitation link to use RSVP and other interactive features.</p>
             <button onClick={() => setShowPurchaseAlert(false)} className="px-6 py-2.5 rounded-full font-sans text-sm font-semibold" style={{ background: 'var(--color-accent)', color: '#080f1a' }}>Close</button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 ﻿'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { X, MessageCircle } from 'lucide-react'
 
 interface Props {
@@ -15,6 +15,11 @@ export default function RSVPModal({ open, onClose, onSend, defaultMessage, bride
   const [guestName, setGuestName] = useState('')
   const [guestCount, setGuestCount] = useState(1)
   const [message, setMessage] = useState(defaultMessage)
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
 
   if (!open) return null
 

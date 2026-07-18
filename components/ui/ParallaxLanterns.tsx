@@ -1,5 +1,6 @@
 'use client'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useIsPreview } from '@/context/WeddingDataContext'
 
 const LANTERNS = [
   { x: '5%',  size: 50, opacity: 0.8, riseDur: 25, delay: 0 },
@@ -18,7 +19,10 @@ const LANTERNS = [
 
 export default function ParallaxLanterns() {
   const { scrollY } = useScroll()
+  const isPreview = useIsPreview()
   const fadeOut = useTransform(scrollY, [0, 5000, 6500], [1, 1, 0])
+
+  if (isPreview) return null
 
   return (
     <motion.div className="fixed inset-0 pointer-events-none overflow-hidden z-[3]" style={{ opacity: fadeOut }} aria-hidden>
