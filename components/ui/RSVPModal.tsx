@@ -17,8 +17,25 @@ export default function RSVPModal({ open, onClose, onSend, defaultMessage, bride
   const [message, setMessage] = useState(defaultMessage)
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (open) {
+      const y = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${y}px`
+      document.body.style.width = '100%'
+    } else {
+      const top = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      if (top) window.scrollTo(0, -parseInt(top, 10))
+    }
+    return () => {
+      const top = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      if (top) window.scrollTo(0, -parseInt(top, 10))
+    }
   }, [open])
 
   if (!open) return null
