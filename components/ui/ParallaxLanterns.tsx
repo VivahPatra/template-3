@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useIsPreview } from '@/context/WeddingDataContext'
 
@@ -22,7 +22,36 @@ export default function ParallaxLanterns() {
   const isPreview = useIsPreview()
   const fadeOut = useTransform(scrollY, [0, 5000, 6500], [1, 1, 0])
 
-  if (isPreview) return null
+  if (isPreview) return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-[3]" aria-hidden>
+      <style>{`
+        @keyframes lanternRise {
+          0%   { transform: translateY(0); opacity: 0; }
+          3%   { opacity: 1; }
+          85%  { opacity: 0.7; }
+          100% { transform: translateY(calc(-100vh - 100px)); opacity: 0; }
+        }
+        @keyframes lanternSway {
+          0%, 100% { transform: translateX(0); }
+          25%       { transform: translateX(12px); }
+          75%       { transform: translateX(-12px); }
+        }
+      `}</style>
+      {LANTERNS.map((l, i) => (
+        <div key={i} className="absolute" style={{ left: l.x, bottom: 0 }}>
+          <div style={{ animation: `lanternRise ${l.riseDur}s linear ${l.delay}s infinite` }}>
+            <div style={{ animation: `lanternSway ${l.riseDur * 0.3}s ease-in-out infinite` }}>
+              <img src="/assets/lantern.webp" alt="" style={{
+                width: `clamp(${l.size}px, ${Math.round(l.size * 0.15)}vw, ${l.size * 2}px)`,
+                height: 'auto', opacity: l.opacity,
+                filter: 'brightness(1.2) drop-shadow(0 0 10px rgba(255,180,80,0.3))',
+              }} />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 
   return (
     <motion.div className="fixed inset-0 pointer-events-none overflow-hidden z-[3]" style={{ opacity: fadeOut }} aria-hidden>
