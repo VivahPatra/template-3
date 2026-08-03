@@ -12,7 +12,9 @@ export default function FloatingFABs() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    const src = backgroundMusic || ''
+    // Only allow https:// or same-origin relative paths
+    const raw = backgroundMusic || ''
+    const src = /^https:\/\//.test(raw) || /^\/[^/]/.test(raw) ? raw : ''
     if (!src) return
     const audio = new Audio(src)
     audio.loop = true

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import FlowerOverlay from '@/components/ui/FlowerOverlay'
@@ -21,7 +21,8 @@ export default function RSVPSection() {
   }, [])
 
   const handleSend = (guestCount: number, fullMessage: string) => {
-    const whatsapp = `https://wa.me/${weddingData.rsvp.whatsappNumber}?text=${encodeURIComponent(fullMessage)}`
+    const safeNumber = (weddingData.rsvp.whatsappNumber ?? '').replace(/[^\d+]/g, '').replace(/(?!^\+)\+/g, '')
+    const whatsapp = `https://wa.me/${safeNumber}?text=${encodeURIComponent(fullMessage)}`
     window.open(whatsapp, '_blank')
     setModalOpen(false)
     setResponded(true)
